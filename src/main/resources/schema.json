@@ -1,0 +1,6 @@
+{
+  "subject": "CustomObject-value",
+  "version": 1,
+  "id": 281,
+  "schema": "{\"type\":\"record\",\"name\":\"value_CustomObject\",\"fields\":[{\"name\":\"firstName\",\"type\":\"string\"},{\"name\":\"lastName\",\"type\":\"int\"},{\"name\":\"age\",\"type\":\"string\"}]}"
+}
