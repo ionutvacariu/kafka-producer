@@ -1,0 +1,8 @@
+{"namespace": "",
+ "type": "record",
+ "name": "Payment2",
+ "fields": [
+     {"name": "id", "type": "string"},
+     {"name": "amount", "type": "double"}
+ ]
+}
