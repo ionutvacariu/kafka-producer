@@ -14,10 +14,11 @@ public class CustomProducer {
     }
 
     static void runtProd2() {
-        Properties props = getProperties();
+        Properties props = getKafkaProperties();
         KafkaProducer<String, Payment2> producer = new KafkaProducer<>(props);
         sendRequests(producer);
     }
+
 
     private static void sendRequests(KafkaProducer<String, Payment2> producer) {
         for (Integer orderId = 300; orderId < 350; orderId++) {
@@ -25,10 +26,10 @@ public class CustomProducer {
             final ProducerRecord<String, Payment2> record = new ProducerRecord<String, Payment2>(IKafkaConstants.TOPIC_NAME, payment.getId().toString(), payment);
             producer.send(record, new DemoProducerCallback());
         }
-        // producer.flush();
+        producer.flush();
     }
 
-    private static Properties getProperties() {
+    private static Properties getKafkaProperties() {
         Properties props = new Properties();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, IKafkaConstants.KAFKA_BROKERS);
         props.put(ProducerConfig.CLIENT_ID_CONFIG, IKafkaConstants.CLIENT_ID);
@@ -48,6 +49,6 @@ class DemoProducerCallback implements Callback {
         if (e != null) {
             e.printStackTrace();
         }
-        System.out.println(" Published record: " + recordMetadata);
+        System.out.println("Published record: " + recordMetadata);
     }
 }
